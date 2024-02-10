@@ -31,6 +31,7 @@ steps:
     script: |
       git config --global user.email "sivabalaji.280@gmail.com"
       git config --global user.name "Siva Balaji"
+      git pull https://github.com/sivabalaji280/simplewarfile.git
       sed -i "s/tomcat:8.0/tomcat:$(Build.BuildId)/g" kubernetes/deployment.yaml
       git add -A
       git commit -m "updating the tag"
