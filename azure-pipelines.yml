@@ -19,18 +19,10 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
-- task: CopyFiles@2
-  inputs:
-    Contents: '**/*.war'
-    TargetFolder: '$(build.artifactstagingdirectory)'
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+
 - task: Docker@2
   inputs:
     containerRegistry: 'dockerhub'
-    repository: 'tomcat'
+    repository: 'balaji36490/tomcat'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
