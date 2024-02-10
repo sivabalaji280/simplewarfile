@@ -33,4 +33,4 @@ steps:
     containerRegistry: 'dockerhub'
     repository: 'tomcat'
     command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile'
+    Dockerfile: 'Dockerfile'
