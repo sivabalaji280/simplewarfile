@@ -9,16 +9,16 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: Maven@3
-  inputs:
-    mavenPomFile: 'pom.xml'
-    mavenOptions: '-Xmx3072m'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.8'
-    jdkArchitectureOption: 'x64'
-    publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: 'package'
+# - task: Maven@3
+#   inputs:
+#     mavenPomFile: 'pom.xml'
+#     mavenOptions: '-Xmx3072m'
+#     javaHomeOption: 'JDKVersion'
+#     jdkVersionOption: '1.8'
+#     jdkArchitectureOption: 'x64'
+#     publishJUnitResults: true
+#     testResultsFiles: '**/surefire-reports/TEST-*.xml'
+#     goals: 'package'
 
 - task: Docker@2
   inputs:
@@ -29,8 +29,7 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      sed -i "s/tomcat:8.0/tomcat:$(Build.BuildId)/g" simplewarfile
-      /kubernetes/deployment.yaml
+      sed -i "s/tomcat:8.0/tomcat:$(Build.BuildId)/g" kubernetes/deployment.yaml
       git add -A
       git commit -m "updating the tag"
       git push https://github.com/sivabalaji280/simplewarfile.git
