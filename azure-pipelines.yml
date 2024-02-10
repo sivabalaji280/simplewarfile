@@ -26,3 +26,11 @@ steps:
     repository: 'balaji36490/tomcat'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
+- task: CmdLine@2
+  inputs:
+    script: |
+      sed -i "s/tomcat:8.0/tomcat:$(Build.BuildId)/g" simplewarfile
+      /kubernetes/deployment.yaml
+      git add -A
+      git commit -m "updating the tag"
+      git push https://github.com/sivabalaji280/simplewarfile.git
