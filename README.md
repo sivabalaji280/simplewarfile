@@ -24,3 +24,5 @@ Open your browser at http://localhost:8888 or simple type ```boxfuse open hello:
 
 
 This is the test file to check the upstream branch.
+
+This is the second line.
